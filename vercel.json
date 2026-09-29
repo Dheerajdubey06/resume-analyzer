@@ -27,8 +27,12 @@
       "dest": "client/assets/$1"
     },
     {
-      "src": "/(.*)",
+      "src": "/(favicon\\.ico|vite\\.svg|robots\\.txt|manifest\\.json|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf|eot))",
       "dest": "client/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "client/index.html"
     }
   ],
   "env": {

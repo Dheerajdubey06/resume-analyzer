@@ -14,6 +14,7 @@ import {
   Briefcase,
   Layers,
   ChevronRight,
+  BarChart3,
 } from 'lucide-react';
 import {
   AreaChart,

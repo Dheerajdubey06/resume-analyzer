@@ -10,6 +10,7 @@ import DashboardLayout from './layouts/DashboardLayout';
 // Protection wrappers
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Pages
 import LandingPage from './pages/LandingPage';
@@ -34,48 +35,50 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <ToastProvider>
-          <Routes>
-            {/* Public Layout */}
-            <Route element={<MainLayout />}>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            </Route>
+          <ErrorBoundary>
+            <Routes>
+              {/* Public Layout */}
+              <Route element={<MainLayout />}>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+              </Route>
 
-            {/* Authenticated Dashboard Layout */}
-            <Route
-              element={
-                <ProtectedRoute>
-                  <DashboardLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route path="/dashboard" element={<DashboardPage />} />
-              <Route path="/resumes" element={<ResumesPage />} />
-              <Route path="/resumes/upload" element={<ResumeUploadPage />} />
-              <Route path="/jobs" element={<JobsPage />} />
-              <Route path="/jobs/create" element={<JobCreatePage />} />
-              <Route path="/analysis" element={<AnalyzePage />} />
-              <Route path="/analysis/:id" element={<AnalysisResultPage />} />
-              <Route path="/history" element={<HistoryPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/settings" element={<SettingsPage />} />
-
-              {/* Admin Portal */}
+              {/* Authenticated Dashboard Layout */}
               <Route
-                path="/admin"
                 element={
-                  <AdminRoute>
-                    <AdminPage />
-                  </AdminRoute>
+                  <ProtectedRoute>
+                    <DashboardLayout />
+                  </ProtectedRoute>
                 }
-              />
-            </Route>
+              >
+                <Route path="/dashboard" element={<DashboardPage />} />
+                <Route path="/resumes" element={<ResumesPage />} />
+                <Route path="/resumes/upload" element={<ResumeUploadPage />} />
+                <Route path="/jobs" element={<JobsPage />} />
+                <Route path="/jobs/create" element={<JobCreatePage />} />
+                <Route path="/analysis" element={<AnalyzePage />} />
+                <Route path="/analysis/:id" element={<AnalysisResultPage />} />
+                <Route path="/history" element={<HistoryPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/settings" element={<SettingsPage />} />
 
-            {/* 404 Route */}
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+                {/* Admin Portal */}
+                <Route
+                  path="/admin"
+                  element={
+                    <AdminRoute>
+                      <AdminPage />
+                    </AdminRoute>
+                  }
+                />
+              </Route>
+
+              {/* 404 Route */}
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </ErrorBoundary>
         </ToastProvider>
       </AuthProvider>
     </BrowserRouter>

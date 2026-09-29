@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = require('../models/User');
 const memoryStore = require('../services/storageAdapter');
+const { JWT_SECRET } = require('../config/auth');
 
 const protect = async (req, res, next) => {
   let token;
@@ -23,10 +24,7 @@ const protect = async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(
-      token,
-      process.env.JWT_SECRET || 'super_secret_jwt_key_resume_ai_2026_dev_seed'
-    );
+    const decoded = jwt.verify(token, JWT_SECRET);
 
     let user = null;
     if (mongoose.connection.readyState === 1) {
