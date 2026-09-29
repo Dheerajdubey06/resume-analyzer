@@ -1,0 +1,30 @@
+{
+  "name": "ai-resume-analyzer",
+  "version": "1.0.0",
+  "description": "ResumeAI — AI Resume Analyzer & Job Matcher (MERN Stack)",
+  "main": "server/server.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server --prefix server\" \"npm run dev --prefix client\"",
+    "client": "npm run dev --prefix client",
+    "server": "npm run dev --prefix server",
+    "build": "npm run build --prefix client",
+    "install-all": "npm install && npm install --prefix server && npm install --prefix client",
+    "start": "node server/server.js"
+  },
+  "keywords": [
+    "resume-analyzer",
+    "ats-scanner",
+    "ai",
+    "job-matcher",
+    "mern",
+    "react",
+    "nodejs",
+    "mongodb",
+    "express"
+  ],
+  "author": "ResumeAI Team",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
