@@ -4,9 +4,9 @@
   "description": "ResumeAI — AI Resume Analyzer & Job Matcher (MERN Stack)",
   "main": "server/server.js",
   "scripts": {
-    "dev": "concurrently \"npm run server --prefix server\" \"npm run dev --prefix client\"",
+    "dev": "concurrently \"npm run start --prefix server\" \"npm run dev --prefix client\"",
     "client": "npm run dev --prefix client",
-    "server": "npm run dev --prefix server",
+    "server": "npm run start --prefix server",
     "build": "npm run build --prefix client",
     "install-all": "npm install && npm install --prefix server && npm install --prefix client",
     "start": "node server/server.js"
